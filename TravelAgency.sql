@@ -1,5 +1,5 @@
 CREATE TYPE "role" AS ENUM (
-    'USER',
+    'CLIENT',
     'REPRESENTATIVE'
     );
 
@@ -7,12 +7,12 @@ CREATE TABLE "users" (
     "id" SERIAL PRIMARY KEY,
     "role" role,
     "full_name" VARCHAR,
-    "password_id" BIGINT
+    "password" VARCHAR
 );
 
 CREATE TABLE "clients" (
     "id" SERIAL PRIMARY KEY,
-    "photo" VARCHAR,
+    "photo_url" VARCHAR,
     "user_id" BIGINT
 );
 
@@ -59,17 +59,16 @@ CREATE TABLE "representatives" (
 
 CREATE TABLE "trips" (
     "id" SERIAL PRIMARY KEY,
-    "route_id" INTEGER REFERENCES "routes"("id"),
-    "representative_id" INTEGER REFERENCES "representatives"("id"),
+    "route_id" BIGINT,
+    "representative_id" BIGINT,
     "cost" FLOAT,
     "departure_date" DATE,
     "arrival_date" DATE,
     "tourists_count" INTEGER,
-    "clients_id" INTEGER REFERENCES "clients"("id"),
+    "clients_id" BIGINT,
     "penalty_amount" FLOAT
 );
 
-ALTER TABLE "users" ADD FOREIGN KEY ("password_id") REFERENCES "passports" ("id");
 ALTER TABLE "clients" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
 ALTER TABLE "route_points" ADD FOREIGN KEY ("hotel_id") REFERENCES "hotels" ("id");
 ALTER TABLE "routes" ADD FOREIGN KEY ("country_id") REFERENCES "countries" ("id");
