@@ -1,19 +1,10 @@
-CREATE TYPE "role" AS ENUM (
-    'CLIENT',
-    'REPRESENTATIVE'
-    );
-
 CREATE TABLE "users" (
     "id" SERIAL PRIMARY KEY,
-    "role" role,
+    "phone_number" VARCHAR UNIQUE,
     "full_name" VARCHAR,
-    "password" VARCHAR
-);
-
-CREATE TABLE "clients" (
-    "id" SERIAL PRIMARY KEY,
+    "password" VARCHAR,
     "photo_url" VARCHAR,
-    "user_id" BIGINT
+    "passport_id" BIGINT
 );
 
 CREATE TABLE "passports" (
@@ -54,7 +45,7 @@ CREATE TABLE "routes" (
 
 CREATE TABLE "representatives" (
     "id" SERIAL PRIMARY KEY,
-    "user_id" BIGINT
+    "full_name" VARCHAR
 );
 
 CREATE TABLE "trips" (
@@ -65,15 +56,14 @@ CREATE TABLE "trips" (
     "departure_date" DATE,
     "arrival_date" DATE,
     "tourists_count" INTEGER,
-    "clients_id" BIGINT,
+    "client_id" BIGINT,
     "penalty_amount" FLOAT
 );
 
-ALTER TABLE "clients" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
 ALTER TABLE "route_points" ADD FOREIGN KEY ("hotel_id") REFERENCES "hotels" ("id");
 ALTER TABLE "routes" ADD FOREIGN KEY ("country_id") REFERENCES "countries" ("id");
 ALTER TABLE "routes" ADD FOREIGN KEY ("route_points_id") REFERENCES "routes" ("id");
-ALTER TABLE "representatives" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
 ALTER TABLE "trips" ADD FOREIGN KEY ("route_id") REFERENCES "routes" ("id");
 ALTER TABLE "trips" ADD FOREIGN KEY ("representative_id") REFERENCES "representatives" ("id");
-ALTER TABLE "trips" ADD FOREIGN KEY ("clients_id") REFERENCES "clients" ("id");
+ALTER TABLE "trips" ADD FOREIGN KEY ("client_id") REFERENCES "users" ("id");
+ALTER TABLE "users" ADD FOREIGN KEY ("passport_id") REFERENCES "passports" ("id");
