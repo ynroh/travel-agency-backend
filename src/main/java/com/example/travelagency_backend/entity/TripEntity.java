@@ -31,13 +31,17 @@ public class TripEntity {
 
     @OneToMany
     @JoinColumn(name = "route_id", referencedColumnName = "id")
-    private Set<RouteEntity> route;
+    private Set<TourEntity> route;
 
     @OneToMany
     @JoinColumn(name = "representative_id", referencedColumnName = "id")
     private Set<RepresentativeEntity> representative;
 
-    @ManyToMany
-    @JoinColumn(name = "clients_id", referencedColumnName = "id")
-    private Set<ClientEntity> clients;
+    @ManyToOne
+    private UserEntity user;
+
+    @ManyToOne
+    private PassportEntity passport;
+
+
 }

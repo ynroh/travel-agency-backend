@@ -12,8 +12,8 @@ import java.util.Set;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "routes")
-public class RouteEntity {
+@Table(name = "tours")
+public class TourEntity {
     @Id
     @GeneratedValue
     private long id;
@@ -22,11 +22,10 @@ public class RouteEntity {
     @Size(max = 250, message = "{validation.name.size.too_long}")
     private String title;
 
+    private Double stay_duration;
+
     @OneToMany
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private Set<CountryEntity> country;
 
-    @ManyToMany
-    @JoinColumn(name = "route_points_id", referencedColumnName = "id")
-    private Set<RoutePointEntity> routePoints;
 }

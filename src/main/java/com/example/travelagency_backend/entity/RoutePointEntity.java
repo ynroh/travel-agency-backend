@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 import static jakarta.persistence.CascadeType.ALL;
 
 @Entity
@@ -26,9 +28,19 @@ public class RoutePointEntity {
 
     private Double stayDuration;
 
-    private String tourName;
-
     @OneToOne
     @JoinColumn(name = "hotel_id", referencedColumnName = "id")
     private HotelEntity hotel;
+
+    @ManyToMany
+    @JoinColumn(name = "tour_id", referencedColumnName = "id")
+    private Set<TourEntity> tour;
+
+    @OneToMany
+    @JoinColumn(name = "city_id", referencedColumnName = "id")
+    private Set<CityEntity> city;
+
+    @ManyToOne
+    @JoinColumn(name = "excursion_id", referencedColumnName = "id")
+    private ExcursionEntity excursions;
 }

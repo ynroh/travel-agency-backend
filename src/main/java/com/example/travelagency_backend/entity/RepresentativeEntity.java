@@ -1,12 +1,11 @@
 package com.example.travelagency_backend.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.Size;
+import lombok.*;
 
 import java.lang.management.GarbageCollectorMXBean;
+import java.util.Set;
 
 @Entity
 @Builder
@@ -19,7 +18,21 @@ public class RepresentativeEntity {
     @GeneratedValue
     private long id;
 
-    @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private UserEntity user;
+    @Size(min = 1, message = "{validation.name.size.too_short}")
+    @Size(max = 30, message = "{validation.name.size.too_long}")
+    private String last_name;
+
+    @Size(min = 1, message = "{validation.name.size.too_short}")
+    @Size(max = 30, message = "{validation.name.size.too_long}")
+    private String name;
+
+    @Size(min = 1, message = "{validation.name.size.too_short}")
+    @Size(max = 30, message = "{validation.name.size.too_long}")
+    private String middle_name;
+
+    private String description;
+
+    @ManyToOne
+    private CityEntity cities;
+
 }

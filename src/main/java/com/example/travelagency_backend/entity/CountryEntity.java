@@ -1,14 +1,13 @@
 package com.example.travelagency_backend.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Set;
 
 @Entity
 @Builder
@@ -21,6 +20,10 @@ public class CountryEntity {
     @GeneratedValue
     private long id;
 
-    @Size()//?
+    @Size()
     private String title;
+
+    @ManyToOne
+    @JoinColumn(name = "city_id", referencedColumnName = "id")
+    private CityEntity cities;
 }

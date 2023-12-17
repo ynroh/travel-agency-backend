@@ -1,7 +1,6 @@
 package com.example.travelagency_backend.dto;
 
-import com.example.travelagency_backend.entity.HotelEntity;
-import com.example.travelagency_backend.entity.RoutePointEntity;
+import com.example.travelagency_backend.entity.CityEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,17 +10,15 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoutePointDto {
+public class CityDto {
     private long id;
     private String title;
-    private Double stayDuration;
 
-    private static RoutePointDto toDto(RoutePointEntity entity){
-        return RoutePointDto
+    private static CityDto toDto(CityEntity entity){
+        return CityDto
                 .builder()
                 .id(entity.getId())
                 .title(entity.getTitle())
-                .stayDuration(entity.getStayDuration())
                 .build();
     }
 }
