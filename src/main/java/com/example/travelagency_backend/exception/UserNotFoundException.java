@@ -1,0 +1,7 @@
+package com.example.travelagency_backend.exception;
+
+public class UserNotFoundException extends Exception {
+    public UserNotFoundException(String message) {
+        super(message);
+    }
+}

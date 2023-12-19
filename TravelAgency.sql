@@ -90,7 +90,15 @@ CREATE TABLE "representatives" (
     "description" VARCHAR[]
 );
 
+CREATE TABLE "refresh_tokens" (
+    "id" BIGSERIAL PRIMARY KEY,
+    "user_id" BIGINT,
+    "token" varchar UNIQUE,
+    "expiry_date" TIMESTAMP WITHOUT TIME ZONE
+);
+
 ALTER TABLE "users" ADD FOREIGN KEY ("passports_id") REFERENCES "passports" ("id");
+ALTER TABLE "refresh_tokens" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
 ALTER TABLE "countries" ADD FOREIGN KEY ("cities_id") REFERENCES "cities" ("id");
 ALTER TABLE "tours" ADD FOREIGN KEY ("country_id") REFERENCES "countries" ("id");
 ALTER TABLE "route_points" ADD FOREIGN KEY ("tour_id") REFERENCES "tours" ("id");
