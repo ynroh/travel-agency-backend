@@ -4,12 +4,12 @@ CREATE TABLE "users" (
     "email" VARCHAR UNIQUE,
     "login" VARCHAR UNIQUE,
     "password" VARCHAR,
-    "photo_url" VARCHAR,
-    "passports_id" BIGINT
+    "photo_url" VARCHAR
 );
 
 CREATE TABLE "passports" (
-    "id" BIGINT PRIMARY KEY,
+    "id" SERIAL PRIMARY KEY,
+    "user_id" SERIAL,
     "last_name" VARCHAR,
     "name" VARCHAR,
     "middle_name" VARCHAR,
@@ -21,15 +21,15 @@ CREATE TABLE "passports" (
 );
 
 CREATE TABLE "passports_trips" (
-    "passport_id" BIGINT,
-    "trip_id" BIGINT,
-    "user_id" BIGINT
+    "passport_id" SERIAL,
+    "trip_id" SERIAL,
+    "user_id" SERIAL
 );
 
 CREATE TABLE "countries" (
     "id" SERIAL PRIMARY KEY,
     "title" VARCHAR(200),
-    "cities_id" BIGINT
+    "cities_id" SERIAL
 );
 
 CREATE TABLE "cities" (
@@ -38,25 +38,25 @@ CREATE TABLE "cities" (
 );
 
 CREATE TABLE "cities_representatives" (
-    "representative_id" BIGINT,
-    "city_id" BIGINT
+    "representative_id" SERIAL PRIMARY KEY,
+    "city_id" SERIAL
 );
 
 CREATE TABLE "tours" (
     "id" SERIAL PRIMARY KEY,
     "title" VARCHAR,
-    "country_id" BIGINT,
+    "country_id" SERIAL,
     "stay_duration" DOUBLE PRECISION
 );
 
 CREATE TABLE "route_points" (
     "id" SERIAL PRIMARY KEY,
-    "tour_id" BIGINT,
+    "tour_id" SERIAL,
     "title" VARCHAR(250),
-    "city_id" BIGINT,
+    "city_id" SERIAL,
     "stay_duration" DOUBLE PRECISION,
-    "excursion_id" VARCHAR,
-    "hotel_id" BIGINT
+    "excursion_id" SERIAL,
+    "hotel_id" SERIAL
 );
 
 CREATE TABLE "excursions" (
@@ -73,13 +73,13 @@ CREATE TABLE "hotels" (
 
 CREATE TABLE "trips" (
     "id" SERIAL PRIMARY KEY,
-    "route_id" BIGINT,
-    "representative_id" BIGINT,
-    "cost" FLOAT,
+    "route_id" SERIAL,
+    "representative_id" SERIAL,
+    "cost" DECIMAL,
     "departure_date" DATE,
     "arrival_date" DATE,
     "tourists_count" INTEGER,
-    "penalty_amount" FLOAT
+    "penalty_amount" DECIMAL
 );
 
 CREATE TABLE "representatives" (
@@ -91,13 +91,13 @@ CREATE TABLE "representatives" (
 );
 
 CREATE TABLE "refresh_tokens" (
-    "id" BIGSERIAL PRIMARY KEY,
-    "user_id" BIGINT,
+    "id" SERIAL PRIMARY KEY,
+    "user_id" SERIAL,
     "token" varchar UNIQUE,
     "expiry_date" TIMESTAMP WITHOUT TIME ZONE
 );
 
-ALTER TABLE "users" ADD FOREIGN KEY ("passports_id") REFERENCES "passports" ("id");
+ALTER TABLE "passports" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
 ALTER TABLE "refresh_tokens" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
 ALTER TABLE "countries" ADD FOREIGN KEY ("cities_id") REFERENCES "cities" ("id");
 ALTER TABLE "tours" ADD FOREIGN KEY ("country_id") REFERENCES "countries" ("id");

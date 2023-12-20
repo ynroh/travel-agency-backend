@@ -28,4 +28,10 @@ public class TourEntity {
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private Set<CountryEntity> country;
 
+    @ManyToMany(mappedBy = "tours")
+    private Set<RoutePointEntity> routePoint;
+
+    @OneToMany(mappedBy = "tour")
+    private Set<TripEntity> trip;
+
 }

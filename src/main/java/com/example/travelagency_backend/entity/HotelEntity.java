@@ -1,9 +1,6 @@
 package com.example.travelagency_backend.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,4 +23,7 @@ public class HotelEntity {
     private String title;
 
     private int raiting;
+
+    @ManyToOne()
+    private RoutePointEntity routePoint;
 }

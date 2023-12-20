@@ -1,5 +1,6 @@
 package com.example.travelagency_backend.entity;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.Optional;
+import java.util.Set;
 
 @Entity
 @Builder
@@ -44,25 +47,11 @@ public class PassportEntity {
 
     private Date birthDate;
 
-    @ManyToOne
-    @JoinTable(
-            name = "passports_trips",
-            joinColumns = @JoinColumn(name="passport_id"),
-            inverseJoinColumns = {
-                    @JoinColumn(name="trip_id"),
-                    @JoinColumn(name="user_id")
-            }
-    )
-    private TripEntity trip;
-
-    @ManyToOne
-    @JoinTable(
-            name = "passports_trips",
-            joinColumns = @JoinColumn(name = "passport_id"),
-            inverseJoinColumns = {
-                    @JoinColumn(name = "trip_id"),
-                    @JoinColumn(name = "user_id")
-            }
-    )
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private UserEntity user;
+
+    @OneToMany(mappedBy = "passport")
+    private Set<PassportTripEntity> passportTrip;
+
 }

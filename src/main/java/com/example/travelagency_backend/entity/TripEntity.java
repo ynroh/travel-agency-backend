@@ -3,6 +3,7 @@ package com.example.travelagency_backend.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.Set;
@@ -19,7 +20,7 @@ public class TripEntity {
     @GeneratedValue
     private long id;
 
-    private DecimalFormat cost;
+    private BigDecimal cost;
 
     private Date departureDate;
 
@@ -27,21 +28,16 @@ public class TripEntity {
 
     private int touristsCount;
 
-    private DecimalFormat penaltyAmount;
+    private BigDecimal penaltyAmount;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "route_id", referencedColumnName = "id")
-    private Set<TourEntity> route;
+    private TourEntity tour;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "representative_id", referencedColumnName = "id")
-    private Set<RepresentativeEntity> representative;
+    private RepresentativeEntity representative;
 
-    @ManyToOne
-    private UserEntity user;
-
-    @ManyToOne
-    private PassportEntity passport;
-
-
+    @OneToMany(mappedBy = "trip")
+    private Set<PassportTripEntity> passportTrip;
 }

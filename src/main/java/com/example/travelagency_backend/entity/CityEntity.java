@@ -28,4 +28,11 @@ public class CityEntity {
             inverseJoinColumns = @JoinColumn(name="representative_id")
     )
     private RepresentativeEntity representative;
+
+    @ManyToOne()
+    private CountryEntity country;
+
+    @OneToMany(mappedBy = "city")
+    private Set<RoutePointEntity> routePoint;
+
 }

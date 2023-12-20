@@ -23,7 +23,7 @@ public class CountryEntity {
     @Size()
     private String title;
 
-    @ManyToOne
+    @OneToMany
     @JoinColumn(name = "city_id", referencedColumnName = "id")
-    private CityEntity cities;
+    private Set<CityEntity> cities;
 }

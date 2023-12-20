@@ -33,6 +33,8 @@ public class RepresentativeEntity {
     private String description;
 
     @ManyToOne
-    private CityEntity cities;
+    private CityEntity city;
 
+    @OneToMany(mappedBy = "representative")
+    private Set<TripEntity> trip;
 }

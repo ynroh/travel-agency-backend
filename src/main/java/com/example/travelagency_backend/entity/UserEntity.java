@@ -1,6 +1,5 @@
 package com.example.travelagency_backend.entity;
 
-import com.example.travelagency_backend.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -43,14 +42,11 @@ public class UserEntity implements UserDetails {
 
     private String photo_url;
 
-    @ManyToOne
-    private TripEntity trip;
+    @OneToMany(mappedBy = "user")
+    private Set<PassportEntity> passports;
 
-
-    @OneToOne
-    @JoinColumn(name = "passport_id", referencedColumnName = "id")
-    private PassportEntity passport;
-
+    @OneToMany(mappedBy = "user")
+    private Set<PassportTripEntity> passportTrip;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;

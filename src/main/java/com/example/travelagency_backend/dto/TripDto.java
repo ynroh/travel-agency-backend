@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Date;
 
@@ -15,11 +16,11 @@ import java.util.Date;
 @NoArgsConstructor
 public class TripDto {
     private long id;
-    private DecimalFormat cost;
+    private BigDecimal cost;
     private Date departureDate;
     private Date arrivalDate;
     private int touristsCount;
-    private DecimalFormat penaltyAmount;
+    private BigDecimal penaltyAmount;
 
     private static TripDto toDto(TripEntity entity) {
         return TripDto
