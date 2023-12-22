@@ -41,9 +41,9 @@ public class AuthenticationService {
         validateRegisterRequest(request);
 
         var user = UserEntity.builder()
-                .phone_number(request.getPhone_number())
+                .phone_number(request.getLogin())
                 .email(request.getEmail())
-                .login(request.getPhone_number())
+                .username(request.getLogin())
                 .photo_url(basicAvatarUrl + "photo.jpeg")
                 .password(passwordEncoder.encode(request.getPassword()))
                 .build();
@@ -51,7 +51,7 @@ public class AuthenticationService {
         repository.save(user);
 
         String jwtToken = jwtService.generateToken(user);
-        RefreshToken refreshToken = refreshTokenService.createRefreshToken(user.getLogin());
+        RefreshToken refreshToken = refreshTokenService.createRefreshToken(user.getUsername());
 
         return AuthenticationResponse
                 .builder()
@@ -68,10 +68,10 @@ public class AuthenticationService {
                 )
         );
 
-        var user = repository.findByLogin(request.getLogin()).orElseThrow(() -> new UserNotFoundException("User not found"));
+        var user = repository.findByUsername(request.getLogin()).orElseThrow(() -> new UserNotFoundException("User not found"));
 
         String jwtToken = jwtService.generateToken(user);
-        RefreshToken refreshToken = refreshTokenService.createRefreshToken(user.getLogin());
+        RefreshToken refreshToken = refreshTokenService.createRefreshToken(user.getUsername());
 
         return AuthenticationResponse
                 .builder()
@@ -83,7 +83,7 @@ public class AuthenticationService {
     private void validateRegisterRequest(RegisterRequest request) throws EmailIsOccupiedException, PhoneNumberIsOccupiedException {
         if (repository.findByEmail(request.getEmail()).isPresent())
             throw new EmailIsOccupiedException("Account with this email is already registered");
-        if (repository.findByLogin(request.getPhone_number()).isPresent())
+        if (repository.findByUsername(request.getLogin()).isPresent())
             throw new PhoneNumberIsOccupiedException("Account with this phone number is already registered");
     }
 }

@@ -2,7 +2,7 @@ CREATE TABLE "users" (
     "id" SERIAL PRIMARY KEY,
     "phone_number" VARCHAR UNIQUE,
     "email" VARCHAR UNIQUE,
-    "login" VARCHAR UNIQUE,
+    "username" VARCHAR UNIQUE,
     "password" VARCHAR,
     "photo_url" VARCHAR
 );
