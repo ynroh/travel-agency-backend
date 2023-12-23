@@ -36,5 +36,5 @@ public class RepresentativeEntity {
     private CityEntity city;
 
     @OneToMany(mappedBy = "representative")
-    private Set<TripEntity> trip;
+    private Set<TourEntity> tour;
 }

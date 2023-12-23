@@ -46,7 +46,10 @@ CREATE TABLE "tours" (
     "id" SERIAL PRIMARY KEY,
     "title" VARCHAR,
     "country_id" SERIAL,
-    "stay_duration" DOUBLE PRECISION
+    "representative_id" SERIAL,
+    "stay_duration" DOUBLE PRECISION,
+    "cost" DECIMAL,
+    "photos_url" VARCHAR[]
 );
 
 CREATE TABLE "route_points" (
@@ -73,8 +76,7 @@ CREATE TABLE "hotels" (
 
 CREATE TABLE "trips" (
     "id" SERIAL PRIMARY KEY,
-    "route_id" SERIAL,
-    "representative_id" SERIAL,
+    "tour_id" SERIAL,
     "cost" DECIMAL,
     "departure_date" DATE,
     "arrival_date" DATE,
@@ -106,7 +108,7 @@ ALTER TABLE "route_points" ADD FOREIGN KEY ("city_id") REFERENCES "cities" ("id"
 ALTER TABLE "route_points" ADD FOREIGN KEY ("excursion_id") REFERENCES "excursions" ("id");
 ALTER TABLE "route_points" ADD FOREIGN KEY ("hotel_id") REFERENCES "hotels" ("id");
 ALTER TABLE "trips" ADD FOREIGN KEY ("representative_id") REFERENCES "representatives" ("id");
-ALTER TABLE "trips" ADD FOREIGN KEY ("route_id") REFERENCES "tours" ("id");
+ALTER TABLE "trips" ADD FOREIGN KEY ("tour_id") REFERENCES "tours" ("id");
 ALTER TABLE "passports_trips" ADD FOREIGN KEY ("passport_id") REFERENCES "passports" ("id");
 ALTER TABLE "passports_trips" ADD FOREIGN KEY ("trip_id") REFERENCES "trips" ("id");
 ALTER TABLE "passports_trips" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");

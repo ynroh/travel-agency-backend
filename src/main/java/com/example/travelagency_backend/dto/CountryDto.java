@@ -14,7 +14,7 @@ public class CountryDto {
     private long id;
     private String title;
 
-    private static CountryDto toDto(CountryEntity entity){
+    public static CountryDto toDto(CountryEntity entity){
         return CountryDto
                 .builder()
                 .id(entity.getId())

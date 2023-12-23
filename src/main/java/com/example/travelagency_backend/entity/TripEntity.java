@@ -31,12 +31,9 @@ public class TripEntity {
     private BigDecimal penaltyAmount;
 
     @ManyToOne
-    @JoinColumn(name = "route_id", referencedColumnName = "id")
+    @JoinColumn(name = "tour_id", referencedColumnName = "id")
     private TourEntity tour;
 
-    @ManyToOne
-    @JoinColumn(name = "representative_id", referencedColumnName = "id")
-    private RepresentativeEntity representative;
 
     @OneToMany(mappedBy = "trip")
     private Set<PassportTripEntity> passportTrip;

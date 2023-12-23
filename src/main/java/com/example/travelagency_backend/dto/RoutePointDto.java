@@ -16,7 +16,7 @@ public class RoutePointDto {
     private String title;
     private Double stayDuration;
 
-    private static RoutePointDto toDto(RoutePointEntity entity){
+    public static RoutePointDto toDto(RoutePointEntity entity){
         return RoutePointDto
                 .builder()
                 .id(entity.getId())
