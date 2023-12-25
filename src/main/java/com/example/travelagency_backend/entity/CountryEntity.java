@@ -23,9 +23,9 @@ public class CountryEntity {
     @Size()
     private String title;
 
-    @OneToMany
-    @JoinColumn(name = "city_id", referencedColumnName = "id")
+    @OneToMany(mappedBy = "country")
     private Set<CityEntity> cities;
+
 
     @OneToMany(mappedBy = "country")
     private Set<TourEntity> tour;

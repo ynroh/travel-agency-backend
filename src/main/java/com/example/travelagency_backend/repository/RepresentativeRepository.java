@@ -8,5 +8,4 @@ import java.util.Optional;
 
 public interface RepresentativeRepository extends JpaRepository<RepresentativeEntity, Long> {
     Optional<RepresentativeEntity> findById(Long id);
-    Optional<RepresentativeEntity> findByName(String name);
 }

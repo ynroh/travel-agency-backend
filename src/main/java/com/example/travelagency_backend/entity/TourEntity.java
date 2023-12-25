@@ -39,7 +39,8 @@ public class TourEntity {
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private CountryEntity country;
 
-    @ManyToMany(mappedBy = "tours")
+    @ManyToMany()
+    @JoinColumn(name = "route_points_id", referencedColumnName = "id")
     private Set<RoutePointEntity> routePoints;
 
     @OneToMany(mappedBy = "tour")

@@ -107,7 +107,7 @@ ALTER TABLE "route_points" ADD FOREIGN KEY ("tour_id") REFERENCES "tours" ("id")
 ALTER TABLE "route_points" ADD FOREIGN KEY ("city_id") REFERENCES "cities" ("id");
 ALTER TABLE "route_points" ADD FOREIGN KEY ("excursion_id") REFERENCES "excursions" ("id");
 ALTER TABLE "route_points" ADD FOREIGN KEY ("hotel_id") REFERENCES "hotels" ("id");
-ALTER TABLE "trips" ADD FOREIGN KEY ("representative_id") REFERENCES "representatives" ("id");
+ALTER TABLE "tours" ADD FOREIGN KEY ("representative_id") REFERENCES "representatives" ("id");
 ALTER TABLE "trips" ADD FOREIGN KEY ("tour_id") REFERENCES "tours" ("id");
 ALTER TABLE "passports_trips" ADD FOREIGN KEY ("passport_id") REFERENCES "passports" ("id");
 ALTER TABLE "passports_trips" ADD FOREIGN KEY ("trip_id") REFERENCES "trips" ("id");

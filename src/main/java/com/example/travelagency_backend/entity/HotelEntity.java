@@ -7,8 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
-
 @Entity
 @Builder
 @Data
@@ -24,8 +22,9 @@ public class HotelEntity {
     @Size(max = 250, message = "{validation.name.size.too_long}")
     private String title;
 
-    private int raiting;
+    private int rating;
 
     @ManyToOne()
+    @JoinColumn(name = "route_point_id")
     private RoutePointEntity routePoint;
 }

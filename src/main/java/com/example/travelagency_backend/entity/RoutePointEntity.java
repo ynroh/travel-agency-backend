@@ -28,19 +28,16 @@ public class RoutePointEntity {
 
     private Double stayDuration;
 
-    @OneToMany
-    @JoinColumn(name = "hotel_id", referencedColumnName = "id")
+
+    @OneToMany(mappedBy = "routePoint")
     private Set<HotelEntity> hotels;
 
-    @ManyToMany
-    @JoinColumn(name = "tour_id", referencedColumnName = "id")
+    @ManyToMany(mappedBy = "routePoints")
     private Set<TourEntity> tours;
 
-    @ManyToOne
-    @JoinColumn(name = "city_id", referencedColumnName = "id")
+    @ManyToOne()
     private CityEntity city;
 
-    @OneToMany
-    @JoinColumn(name = "excursion_id", referencedColumnName = "id")
+    @OneToMany(mappedBy = "routePoint")
     private Set<ExcursionEntity> excursions;
 }

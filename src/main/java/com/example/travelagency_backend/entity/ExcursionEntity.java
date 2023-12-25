@@ -27,5 +27,6 @@ public class ExcursionEntity {
     private String description;
 
     @ManyToOne
+    @JoinColumn(name = "route_point_id", referencedColumnName = "id")
     private RoutePointEntity routePoint;
 }

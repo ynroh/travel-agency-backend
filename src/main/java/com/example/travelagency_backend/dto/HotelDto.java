@@ -20,7 +20,7 @@ public class HotelDto {
                 .builder()
                 .id(entity.getId())
                 .title(entity.getTitle())
-                .raiting(entity.getRaiting())
+                .raiting(entity.getRating())
                 .build();
     }
 }

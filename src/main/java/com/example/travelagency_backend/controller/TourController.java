@@ -23,7 +23,7 @@ public class TourController {
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/tour/{id}")
     public ResponseEntity getCatalogTour(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(tourService.getCatalogTour(id));

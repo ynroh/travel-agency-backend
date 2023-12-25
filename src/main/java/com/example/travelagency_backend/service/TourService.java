@@ -1,8 +1,5 @@
 package com.example.travelagency_backend.service;
 
-import com.example.travelagency_backend.dto.CountryDto;
-import com.example.travelagency_backend.dto.RepresentativeDto;
-import com.example.travelagency_backend.dto.RoutePointDto;
 import com.example.travelagency_backend.dto.tour.CatalogTourDto;
 import com.example.travelagency_backend.dto.tour.CreateTourRequest;
 import com.example.travelagency_backend.dto.tour.TourDto;
@@ -12,7 +9,7 @@ import com.example.travelagency_backend.entity.TourEntity;
 import com.example.travelagency_backend.exception.*;
 import com.example.travelagency_backend.repository.CountryRepository;
 import com.example.travelagency_backend.repository.RepresentativeRepository;
-import com.example.travelagency_backend.repository.RoutePointRespository;
+import com.example.travelagency_backend.repository.RoutePointRepository;
 import com.example.travelagency_backend.repository.TourRepository;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +23,7 @@ public class TourService {
     private TourRepository tourRepository;
     private RepresentativeRepository representativeRepository;
     private CountryRepository countryRepository;
-    private RoutePointRespository routePointRespository;
+    private RoutePointRepository routePointRespository;
     public TourDto getTour(Long id) throws TourNotFoundException {
         Optional<TourEntity> tourOptional = tourRepository.findById(id);
         TourEntity tourEntity;

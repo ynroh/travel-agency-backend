@@ -29,7 +29,8 @@ public class CityEntity {
     )
     private RepresentativeEntity representative;
 
-    @ManyToOne()
+    @ManyToOne
+    @JoinColumn(name = "country_id")
     private CountryEntity country;
 
     @OneToMany(mappedBy = "city")
