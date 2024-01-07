@@ -12,13 +12,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CountryDto {
     private long id;
-    private String title;
+    private String name;
 
     public static CountryDto toDto(CountryEntity entity){
         return CountryDto
                 .builder()
                 .id(entity.getId())
-                .title(entity.getName())
+                .name(entity.getName())
                 .build();
     }
 }

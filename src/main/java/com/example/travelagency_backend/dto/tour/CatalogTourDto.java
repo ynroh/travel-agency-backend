@@ -32,8 +32,8 @@ public class CatalogTourDto {
                 .photosUrl(entity.getPhotos_url())
                 .country(CountryDto
                         .builder()
-                        .id(entity.getId())
-                        .title(entity.getTitle())
+                        .id(entity.getCountry().getId())
+                        .name(entity.getCountry().getName())
                         .build())
                 .build();
     }

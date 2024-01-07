@@ -47,7 +47,7 @@ public class TourDto {
                 .country(CountryDto
                         .builder()
                         .id(entity.getId())
-                        .title(entity.getTitle())
+                        .name(entity.getTitle())
                         .build())
                 .routePoints(entity.getRoutePoints()
                         .stream()
