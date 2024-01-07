@@ -16,7 +16,7 @@ CREATE TABLE "passports" (
     "series" VARCHAR(4),
     "number" VARCHAR(6),
     "issue_date" DATE,
-    "who_issued" VARCHAR[],
+    "who_issued" TEXT,
     "birth_date" DATE
 );
 
@@ -49,7 +49,7 @@ CREATE TABLE "tours" (
     "representative_id" SERIAL,
     "stay_duration" DOUBLE PRECISION,
     "cost" DECIMAL,
-    "photos_url" VARCHAR[]
+    "photos_url" TEXT[]
 );
 
 CREATE TABLE "route_points" (
@@ -65,7 +65,7 @@ CREATE TABLE "route_points" (
 CREATE TABLE "excursions" (
     "id" SERIAL PRIMARY KEY,
     "title" VARCHAR(250),
-    "description" VARCHAR[]
+    "description" TEXT
 );
 
 CREATE TABLE "hotels" (
@@ -89,7 +89,7 @@ CREATE TABLE "representatives" (
     "last_name" VARCHAR,
     "name" VARCHAR,
     "middle_name" VARCHAR,
-    "description" VARCHAR[]
+    "description" TEXT
 );
 
 CREATE TABLE "refresh_tokens" (

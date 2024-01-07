@@ -2,6 +2,7 @@ package com.example.travelagency_backend.controller;
 
 import com.example.travelagency_backend.dto.tour.CreateTourRequest;
 import com.example.travelagency_backend.exception.TourNotFoundException;
+import com.example.travelagency_backend.service.TourListService;
 import com.example.travelagency_backend.service.TourService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/tour")
 public class TourController {
+    @Autowired
     private TourService tourService;
-
+    @Autowired
+    private TourListService tourListService;
 
     @GetMapping("/{id}")
     public ResponseEntity getTour(@PathVariable Long id) {
@@ -23,10 +26,10 @@ public class TourController {
         }
     }
 
-    @GetMapping("/tour/{id}")
-    public ResponseEntity getCatalogTour(@PathVariable Long id) {
+    @GetMapping("/catalog")
+    public ResponseEntity getCatalogTour() {
         try {
-            return ResponseEntity.ok(tourService.getCatalogTour(id));
+            return ResponseEntity.ok(tourListService.getCatalogTour());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

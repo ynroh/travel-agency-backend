@@ -18,7 +18,7 @@ public class CountryDto {
         return CountryDto
                 .builder()
                 .id(entity.getId())
-                .title(entity.getTitle())
+                .title(entity.getName())
                 .build();
     }
 }

@@ -11,6 +11,7 @@ import com.example.travelagency_backend.repository.CountryRepository;
 import com.example.travelagency_backend.repository.RepresentativeRepository;
 import com.example.travelagency_backend.repository.RoutePointRepository;
 import com.example.travelagency_backend.repository.TourRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -20,9 +21,13 @@ import java.util.Optional;
 @Service
 public class TourService {
 
+    @Autowired
     private TourRepository tourRepository;
+    @Autowired
     private RepresentativeRepository representativeRepository;
+    @Autowired
     private CountryRepository countryRepository;
+    @Autowired
     private RoutePointRepository routePointRespository;
     public TourDto getTour(Long id) throws TourNotFoundException {
         Optional<TourEntity> tourOptional = tourRepository.findById(id);

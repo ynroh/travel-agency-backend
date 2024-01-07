@@ -21,7 +21,7 @@ public class CountryEntity {
     private long id;
 
     @Size()
-    private String title;
+    private String name;
 
     @OneToMany(mappedBy = "country")
     private Set<CityEntity> cities;

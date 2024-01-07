@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -29,7 +30,7 @@ public class TourEntity {
     private BigDecimal cost;
 
     @ElementCollection
-    private List<String> photos_url;
+    private List<String> photos_url = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "representative_id", referencedColumnName = "id")
