@@ -15,7 +15,7 @@ public class HotelDto {
     private String title;
     private int raiting;
 
-    private static HotelDto toDto(HotelEntity entity){
+    public static HotelDto toDto(HotelEntity entity){
         return HotelDto
                 .builder()
                 .id(entity.getId())

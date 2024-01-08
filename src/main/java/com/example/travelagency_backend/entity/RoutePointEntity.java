@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
-import static jakarta.persistence.CascadeType.ALL;
-
 @Entity
 @Builder
 @Data
@@ -29,8 +27,9 @@ public class RoutePointEntity {
     private Double stayDuration;
 
 
-    @OneToMany(mappedBy = "routePoint")
-    private Set<HotelEntity> hotels;
+    @OneToOne()
+    @JoinColumn(name = "hotel_id")
+    private HotelEntity hotel;
 
     @ManyToMany(mappedBy = "routePoints")
     private Set<TourEntity> tours;
@@ -38,6 +37,7 @@ public class RoutePointEntity {
     @ManyToOne()
     private CityEntity city;
 
-    @OneToMany(mappedBy = "routePoint")
-    private Set<ExcursionEntity> excursions;
+    @OneToOne()
+    @JoinColumn(name = "excursion_id")
+    private ExcursionEntity excursion;
 }

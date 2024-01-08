@@ -18,8 +18,9 @@ public class CityEntity {
     @GeneratedValue
     private long id;
 
+    @Column(name = "title")
     @Size()
-    private String title;
+    private String name;
 
     @ManyToOne
     @JoinTable(

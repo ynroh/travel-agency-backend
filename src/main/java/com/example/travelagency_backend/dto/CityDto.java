@@ -12,13 +12,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CityDto {
     private long id;
-    private String title;
+    private String name;
 
     private static CityDto toDto(CityEntity entity){
         return CityDto
                 .builder()
                 .id(entity.getId())
-                .title(entity.getTitle())
+                .name(entity.getName())
                 .build();
     }
 }

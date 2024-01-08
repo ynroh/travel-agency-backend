@@ -24,6 +24,7 @@ public class ExcursionEntity {
     @Size(max = 250, message = "{validation.name.size.too_long}")
     private String title;
 
+    @Column(name = "description")
     private String description;
 
     @ManyToOne

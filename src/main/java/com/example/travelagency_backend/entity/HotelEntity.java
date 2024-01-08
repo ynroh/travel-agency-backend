@@ -24,7 +24,4 @@ public class HotelEntity {
 
     private int rating;
 
-    @ManyToOne()
-    @JoinColumn(name = "route_point_id")
-    private RoutePointEntity routePoint;
 }

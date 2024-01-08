@@ -17,7 +17,7 @@ public class ExcursionDto {
     private String title;
     private String description;
 
-    private static ExcursionDto toDto(ExcursionEntity entity){
+    public static ExcursionDto toDto(ExcursionEntity entity){
         return ExcursionDto
                 .builder()
                 .id(entity.getId())

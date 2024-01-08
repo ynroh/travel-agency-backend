@@ -1,6 +1,8 @@
 package com.example.travelagency_backend.dto.tour;
 
 import com.example.travelagency_backend.dto.CountryDto;
+import com.example.travelagency_backend.dto.RepresentativeDto;
+import com.example.travelagency_backend.dto.RoutePointDto;
 import com.example.travelagency_backend.entity.TourEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,6 +23,8 @@ public class CatalogTourDto {
     private BigDecimal cost;
     private List<String> photosUrl;
     private CountryDto country;
+    private RepresentativeDto representative;
+    private List<RoutePointDto> routePoints;
 
     public static CatalogTourDto toDto(TourEntity entity){
         return CatalogTourDto
@@ -35,6 +39,18 @@ public class CatalogTourDto {
                         .id(entity.getCountry().getId())
                         .name(entity.getCountry().getName())
                         .build())
+                .representative(RepresentativeDto
+                        .builder()
+                        .id(entity.getRepresentative().getId())
+                        .last_name(entity.getRepresentative().getLast_name())
+                        .name(entity.getRepresentative().getName())
+                        .middle_name(entity.getRepresentative().getMiddle_name())
+                        .description(entity.getRepresentative().getDescription())
+                        .build())
+                .routePoints(entity.getRoutePoints()
+                        .stream()
+                        .map(RoutePointDto::toDto)
+                        .toList())
                 .build();
     }
 }
