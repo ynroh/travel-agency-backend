@@ -1,4 +1,4 @@
-package com.example.travelagency_backend.dto;
+package com.example.travelagency_backend.dto.trip;
 
 import com.example.travelagency_backend.entity.TripEntity;
 import lombok.AllArgsConstructor;
@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.Date;
 
 @Data
@@ -22,7 +21,7 @@ public class TripDto {
     private int touristsCount;
     private BigDecimal penaltyAmount;
 
-    private static TripDto toDto(TripEntity entity) {
+    public static TripDto toDto(TripEntity entity) {
         return TripDto
                 .builder()
                 .id(entity.getId())
